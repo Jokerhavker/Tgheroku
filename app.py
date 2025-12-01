@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 import threading
+import os
 
 # === Configuration ===
 API_ID = 21313094
@@ -133,3 +134,7 @@ if __name__ == "__main__":
     threading.Thread(target=loop_thread, daemon=True).start()
     from keep_alive import keep_alive
     keep_alive()
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
